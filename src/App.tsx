@@ -1,18 +1,12 @@
-import { useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+// import custom components
+import Register from "./routes/Register";
 
 export default function App() {
-  async function checkServer() {
-    const response = await fetch(
-      "https://my-notes-backend-t6jl.onrender.com/api"
-    );
-    console.log(await response.json());
-  }
-
-  useEffect(() => {
-    checkServer();
-  }, []);
-
   return (
-    <div className="h-screen flex items-center justify-center">Hello World</div>
+    <Routes>
+      <Route path="/" element={<Register />} />
+      <Route path="/login" element={"hello world"} />
+    </Routes>
   );
 }
