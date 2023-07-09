@@ -1,9 +1,13 @@
+import { ChangeEvent } from "react";
+
 interface InputProps {
   id: string;
   error?: string;
   name: string;
   label?: string;
   placeholder?: string;
+  value: string;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   type: "text" | "email" | "password";
 }
 
@@ -13,7 +17,9 @@ export default function Input({
   id,
   label,
   error,
+  value,
   placeholder,
+  onChange,
 }: InputProps) {
   return (
     <div className="flex flex-col gap-2">
@@ -27,6 +33,8 @@ export default function Input({
         type={type}
         name={name}
         placeholder={placeholder}
+        value={value}
+        onChange={onChange}
         className="w-full border rounded-[4px] p-2 focus:outline-blue-700"
       />
       {error && (
