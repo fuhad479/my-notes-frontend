@@ -1,6 +1,19 @@
-export default function Note() {
+import { Dispatch, SetStateAction } from "react";
+
+interface NoteProps {
+  setOpenSingleNote: Dispatch<SetStateAction<boolean>>;
+}
+
+export default function Note({ setOpenSingleNote }: NoteProps) {
+  function openSingleNote() {
+    setOpenSingleNote(() => true);
+  }
+
   return (
-    <div className="group bg-white rounded-[4px] p-3 px-4 hover:shadow-[0_0_30px] hover:shadow-[rgba(0,0,0,0.1)]">
+    <div
+      onClick={openSingleNote}
+      className="group bg-white rounded-[4px] p-3 px-4 hover:shadow-[0_0_30px] hover:shadow-[rgba(0,0,0,0.1)]"
+    >
       <div className="flex items-center justify-between mb-2">
         <strong className="[display:-webkit-box] [-webkit-line-clamp:1] [-webkit-box-orient:vertical] overflow-hidden">
           This is note component. This is note component

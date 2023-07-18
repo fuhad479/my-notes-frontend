@@ -1,8 +1,12 @@
+import { useState } from "react";
 // import custom components
 import Button from "../Button";
 import Note from "./Note";
+import SingleNote from "../SingleNote";
 
 export default function NotesList() {
+  const [openSingleNote, setOpenSingleNote] = useState<boolean>(false);
+
   return (
     <div>
       <div className="flex border-b border-b-slate-200 items-center justify-between bg-white px-3 py-2">
@@ -35,15 +39,16 @@ export default function NotesList() {
         </div>
       </div>
       <div className="grid grid-cols-4 gap-3 p-3">
-        <Note />
-        <Note />
-        <Note />
-        <Note />
-        <Note />
-        <Note />
-        <Note />
-        <Note />
+        <Note setOpenSingleNote={setOpenSingleNote} />
+        <Note setOpenSingleNote={setOpenSingleNote} />
+        <Note setOpenSingleNote={setOpenSingleNote} />
+        <Note setOpenSingleNote={setOpenSingleNote} />
+        <Note setOpenSingleNote={setOpenSingleNote} />
+        <Note setOpenSingleNote={setOpenSingleNote} />
+        <Note setOpenSingleNote={setOpenSingleNote} />
+        <Note setOpenSingleNote={setOpenSingleNote} />
       </div>
+      {openSingleNote && <SingleNote setOpenSingleNote={setOpenSingleNote} />}
     </div>
   );
 }
