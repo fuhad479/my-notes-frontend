@@ -1,6 +1,3 @@
-// import custom component
-import Checkbox from "../Checkbox";
-
 export default function Note() {
   return (
     <div className="group bg-white rounded-[4px] p-3 px-4 hover:shadow-[0_0_30px] hover:shadow-[rgba(0,0,0,0.1)]">

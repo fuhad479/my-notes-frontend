@@ -4,7 +4,7 @@ import Button from "./Button";
 
 export default function Sidebar() {
   return (
-    <aside className="bg-white h-screen flex flex-col">
+    <aside className="bg-white h-screen flex flex-col border-r border-r-slate-200">
       <nav className="p-3">
         <ul>
           <li className="rounded-[4px] font-medium flex items-center gap-1 hover:bg-blue-100">
