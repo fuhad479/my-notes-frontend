@@ -3,9 +3,11 @@ import { useState } from "react";
 import Button from "../Button";
 import Note from "./Note";
 import SingleNote from "../SingleNote";
+import NoteForm from "../NoteForm";
 
 export default function NotesList() {
   const [openSingleNote, setOpenSingleNote] = useState<boolean>(false);
+  const [openNoteForm, setOpenNoteForm] = useState<boolean>(false);
 
   return (
     <div>
@@ -35,7 +37,9 @@ export default function NotesList() {
           />
         </div>
         <div className="flex">
-          <Button type="button">Create note</Button>
+          <Button type="button" onClick={() => setOpenNoteForm(() => true)}>
+            Create note
+          </Button>
         </div>
       </div>
       <div className="grid grid-cols-4 gap-3 p-3">
@@ -49,6 +53,7 @@ export default function NotesList() {
         <Note setOpenSingleNote={setOpenSingleNote} />
       </div>
       {openSingleNote && <SingleNote setOpenSingleNote={setOpenSingleNote} />}
+      {openNoteForm && <NoteForm setOpenNoteForm={setOpenNoteForm} />}
     </div>
   );
 }
