@@ -6,6 +6,7 @@ import SingleNote from "../SingleNote";
 import NoteForm from "../NoteForm";
 
 interface Notes {
+  _id: string;
   title: string;
   note: string;
   user: {
@@ -18,7 +19,7 @@ interface NotesListProps {
 }
 
 export default function NotesList({ notes }: NotesListProps) {
-  const [openSingleNote, setOpenSingleNote] = useState<boolean>(false);
+  const [openSingleNote, setOpenSingleNote] = useState<string>("");
   const [openNoteForm, setOpenNoteForm] = useState<boolean>(false);
 
   console.log(notes);
@@ -61,7 +62,7 @@ export default function NotesList({ notes }: NotesListProps) {
           <Note key={index} note={note} setOpenSingleNote={setOpenSingleNote} />
         ))}
       </div>
-      {openSingleNote && <SingleNote setOpenSingleNote={setOpenSingleNote} />}
+      {openSingleNote !== "" && <SingleNote openSingleNote={openSingleNote} setOpenSingleNote={setOpenSingleNote} />}
       {openNoteForm && <NoteForm setOpenNoteForm={setOpenNoteForm} />}
     </div>
   );

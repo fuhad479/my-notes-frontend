@@ -2,17 +2,20 @@ import { Dispatch, SetStateAction } from "react";
 
 interface NoteProps {
   note: {
+    _id: string;
     title: string;
     note: string;
     user: { email: string };
   };
-  setOpenSingleNote: Dispatch<SetStateAction<boolean>>;
+  setOpenSingleNote: Dispatch<SetStateAction<string>>;
 }
 
 export default function Note({ note, setOpenSingleNote }: NoteProps) {
   function openSingleNote() {
-    setOpenSingleNote(() => true);
+    setOpenSingleNote(() => note._id);
   }
+
+  console.log(note);
 
   return (
     <div

@@ -1,16 +1,20 @@
 import { Dispatch, SetStateAction } from "react";
+import { useGetSingleNoteQuery } from "../services/notes";
 
 interface SingleNoteProps {
-  setOpenSingleNote: Dispatch<SetStateAction<boolean>>;
+  openSingleNote: string;
+  setOpenSingleNote: Dispatch<SetStateAction<string>>;
 }
 
-export default function SingleNote({ setOpenSingleNote }: SingleNoteProps) {
+export default function SingleNote({ openSingleNote, setOpenSingleNote }: SingleNoteProps) {
+  const { data: note } = useGetSingleNoteQuery(openSingleNote);
+
   return (
     <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-[rgba(0,0,0,0.4)]">
       <div className="w-[700px] bg-white rounded-[8px] p-4">
         <div className="flex items-center justify-between mb-3">
-          <strong className="block">hello world</strong>
-          <button type="button" onClick={() => setOpenSingleNote(() => false)}>
+          <strong className="block">{note?.title}</strong>
+          <button type="button" onClick={() => setOpenSingleNote(() => "")}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="15"
@@ -25,18 +29,7 @@ export default function SingleNote({ setOpenSingleNote }: SingleNoteProps) {
           </button>
         </div>
         <p>
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem vel
-          sint, hic quibusdam non consectetur sapiente earum nemo aut esse a
-          odio quisquam laudantium cumque provident corrupti iusto dolor minus
-          dignissimos assumenda eaque maiores voluptates voluptatem. Corporis
-          earum pariatur nemo iure aut eos provident iusto ea facilis libero.
-          Amet optio architecto ut quidem, doloribus, atque deleniti illum in,
-          ullam nesciunt molestias quis exercitationem voluptate maxime ipsam
-          totam veniam fuga? Ab eveniet nesciunt eligendi temporibus itaque.
-          Assumenda molestias dicta quod provident vero dolores? Sint alias,
-          architecto saepe consequatur dignissimos similique perferendis
-          obcaecati ipsam natus, in libero sapiente officiis suscipit quidem
-          voluptatum.
+          {note?.note}
         </p>
       </div>
     </div>
