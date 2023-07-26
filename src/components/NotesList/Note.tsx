@@ -1,10 +1,15 @@
 import { Dispatch, SetStateAction } from "react";
 
 interface NoteProps {
+  note: {
+    title: string;
+    note: string;
+    user: { email: string };
+  };
   setOpenSingleNote: Dispatch<SetStateAction<boolean>>;
 }
 
-export default function Note({ setOpenSingleNote }: NoteProps) {
+export default function Note({ note, setOpenSingleNote }: NoteProps) {
   function openSingleNote() {
     setOpenSingleNote(() => true);
   }
@@ -16,7 +21,7 @@ export default function Note({ setOpenSingleNote }: NoteProps) {
     >
       <div className="flex items-center justify-between mb-2">
         <strong className="[display:-webkit-box] [-webkit-line-clamp:1] [-webkit-box-orient:vertical] overflow-hidden">
-          This is note component. This is note component
+          {note.title}
         </strong>
         <button type="button">
           <svg
@@ -34,9 +39,7 @@ export default function Note({ setOpenSingleNote }: NoteProps) {
         </button>
       </div>
       <p className="text-sm font-medium [display:-webkit-box] [-webkit-box-orient:vertical] [-webkit-line-clamp:5] overflow-hidden">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem et eum
-        quam dolore at velit nisi cumque illo veniam perferendis suscipit ab est
-        facilis tempore quisquam, voluptas qui. Atque, obcaecati!
+        {note.note}
       </p>
     </div>
   );

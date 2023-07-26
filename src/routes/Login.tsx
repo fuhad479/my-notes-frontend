@@ -1,5 +1,5 @@
-import { useState, ChangeEvent, FormEvent } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect, ChangeEvent, FormEvent } from "react";
+import { useNavigate, Link } from "react-router-dom";
 // import custom hooks
 import { useLoginUserMutation } from "../services/users";
 // import custom components
@@ -10,8 +10,10 @@ export default function Register() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
+  const navigate = useNavigate();
+
   // using pre made hook from RTK Query to work with API endpoints
-  const [loginUser, { data }] = useLoginUserMutation();
+  const [loginUser, { data, isSuccess }] = useLoginUserMutation();
 
   // this function will submit the form with user provided data for login
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -20,6 +22,10 @@ export default function Register() {
 
     loginUser({ email, password });
   }
+
+  useEffect(() => {
+    isSuccess && navigate('/notes');
+  }, [isSuccess, navigate])
 
   return (
     <div className="h-screen flex items-center justify-center bg-slate-100">

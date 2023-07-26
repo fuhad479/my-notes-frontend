@@ -5,9 +5,23 @@ import Note from "./Note";
 import SingleNote from "../SingleNote";
 import NoteForm from "../NoteForm";
 
-export default function NotesList() {
+interface Notes {
+  title: string;
+  note: string;
+  user: {
+    email: string;
+  };
+}
+
+interface NotesListProps {
+  notes: Notes[];
+}
+
+export default function NotesList({ notes }: NotesListProps) {
   const [openSingleNote, setOpenSingleNote] = useState<boolean>(false);
   const [openNoteForm, setOpenNoteForm] = useState<boolean>(false);
+
+  console.log(notes);
 
   return (
     <div>
@@ -43,14 +57,9 @@ export default function NotesList() {
         </div>
       </div>
       <div className="grid grid-cols-4 gap-3 p-3">
-        <Note setOpenSingleNote={setOpenSingleNote} />
-        <Note setOpenSingleNote={setOpenSingleNote} />
-        <Note setOpenSingleNote={setOpenSingleNote} />
-        <Note setOpenSingleNote={setOpenSingleNote} />
-        <Note setOpenSingleNote={setOpenSingleNote} />
-        <Note setOpenSingleNote={setOpenSingleNote} />
-        <Note setOpenSingleNote={setOpenSingleNote} />
-        <Note setOpenSingleNote={setOpenSingleNote} />
+        {notes?.map((note, index) => (
+          <Note key={index} note={note} setOpenSingleNote={setOpenSingleNote} />
+        ))}
       </div>
       {openSingleNote && <SingleNote setOpenSingleNote={setOpenSingleNote} />}
       {openNoteForm && <NoteForm setOpenNoteForm={setOpenNoteForm} />}
